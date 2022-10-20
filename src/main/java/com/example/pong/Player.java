@@ -5,32 +5,29 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Player {
-    private KeyCode upKey, downKey;
     private int x, y, points;
     private Rectangle skin;
+    private int xSize, ySize;
+    private int height = 50, width = 10;
+    private int sideGap = 30, topGap;
+    private int speed = 10;
 
-    public Player(KeyCode upKey, KeyCode downKey, boolean side) {
-        this.upKey = upKey;
-        this.downKey = downKey;
-        this.y = 250;
+    public Player(boolean side, int xSize, int ySize, int topGap) {
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.topGap = topGap;
+        this.y = (ySize - height)/2+topGap;
         if(side){
-            this.x = 30;
+            this.x = sideGap;
         }
         else{
-            this.x = 560;
+            this.x = xSize - sideGap - width;
         }
         points = 0;
-        skin = new Rectangle(10, 50, Color.WHITE);
+        skin = new Rectangle(width, height, Color.WHITE);
         skin.setX(x); skin.setY(y);
     }
 
-    public KeyCode getUpKey() {
-        return upKey;
-    }
-
-    public KeyCode getDownKey() {
-        return downKey;
-    }
 
     public int getX() {
         return x;
@@ -46,5 +43,19 @@ public class Player {
 
     public Rectangle getSkin() {
         return skin;
+    }
+
+    public void move(boolean up){
+        if(up){
+            if(y - speed > topGap){
+                y-= speed;
+            }
+        }
+        else{
+            if(y + height + speed < ySize){
+                y+=speed;
+            }
+        }
+        skin.setX(x); skin.setY(y);
     }
 }

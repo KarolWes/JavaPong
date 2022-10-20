@@ -11,7 +11,10 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 650);
+        Controller controller = fxmlLoader.getController();
+        scene.setOnKeyPressed(controller.handleKeyPressed);
+        scene.setOnKeyReleased(controller.handleKeyReleased);
         stage.setTitle("Pong!");
         stage.setScene(scene);
         stage.show();
