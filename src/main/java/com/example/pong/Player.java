@@ -1,19 +1,19 @@
 package com.example.pong;
 
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Player {
-    private int x, y, points;
-    private Rectangle skin;
-    private int xSize, ySize;
-    private int height = 50, width = 10;
-    private int sideGap = 30, topGap;
+    private final int x;
+    private int y;
+    private int points;
+    private final Rectangle skin;
+    private final int ySize;
+    private final int height = 50, width = 10;
+    private final int topGap;
     private int speed = 10;
 
-    public Player(boolean side, int xSize, int ySize, int topGap) {
-        this.xSize = xSize;
+    public Player(boolean side, int xSize, int ySize, int topGap, int sideGap) {
         this.ySize = ySize;
         this.topGap = topGap;
         this.y = (ySize - height)/2+topGap;

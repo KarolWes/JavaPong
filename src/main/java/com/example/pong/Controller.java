@@ -16,16 +16,19 @@ public class Controller {
     @FXML
     private Pane mainWindow;
     private Player playerLeft, playerRight;
-    private int xSize = 600, ySize = 650;
-    private int topGap = 50;
+    private Ball ball;
+    private final int xSize = 600, ySize = 650;
+    private final int topGap = 50, sideGap=30;
     private int leftDir = 0, rightDir = 0;
     public void initialize()
     {
         mainWindow.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        playerLeft = new Player(true, xSize, ySize, topGap);
-        playerRight = new Player(false, xSize, ySize, topGap);
+        playerLeft = new Player(true, xSize, ySize, topGap, sideGap);
+        playerRight = new Player(false, xSize, ySize, topGap, sideGap);
+        ball = new Ball(xSize, ySize, topGap,sideGap);
         mainWindow.getChildren().add(playerLeft.getSkin());
         mainWindow.getChildren().add(playerRight.getSkin());
+        mainWindow.getChildren().add(ball.getSkin());
         timer.start();
     }
 
@@ -46,6 +49,7 @@ public class Controller {
             else if(rightDir == 1){
                 playerRight.move(false);
             }
+            ball.move();
         }
     };
 
